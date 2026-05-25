@@ -1,20 +1,62 @@
+# SECEOKNIGHT Breach Sources Configuration
+# ==========================================
+# Configure which breach databases to monitor and how to access them.
+# See CONFIGURATION_GUIDE.md for detailed documentation.
+
 breach_sources:
+
+  # XposedOrNot - FREE Service
+  # Monitors XposedOrNot breach database
+  # Rate Limit: 60 requests/hour (free tier max)
+  # Good for: Small to medium organizations (up to 500 employees)
   xposedornot:
-    enabled: true
-    name: "xposedornot"
-    rate_limit: 0.01667
-    priority: 1
+    enabled: true                 # true = enabled, false = disabled
+    name: "xposedornot"          # Internal name (do not change)
+    rate_limit: 0.01667          # Requests per second (do not change)
+    priority: 1                   # Checked first (lower number = earlier)
 
+
+  # HIBP (Have I Been Pwned) - FREE OR PAID
+  # Monitors HaveIBeenPwned.com breach database (most comprehensive)
+  # FREE TIER: 1.5 req/sec (good for 1-100 employees)
+  # PAID TIER: 10+ req/sec (good for 100+ employees, $3.50/month)
   hibp:
-    enabled: true
-    name: "hibp"
-    api_key: null
-    rate_limit: 1.5
-    priority: 2
+    enabled: true                 # true = enabled, false = disabled
+    name: "hibp"                 # Internal name (do not change)
 
+    # API KEY - Add your HIBP paid tier key here (optional)
+    # DEFAULT: api_key: null (uses free tier)
+    # PAID TIER SETUP:
+    #   1. Go to: https://haveibeenpwned.com/API/v3
+    #   2. Sign up for paid account ($3.50/month)
+    #   3. Copy your API key
+    #   4. Replace null with your key: api_key: "your-actual-key-here"
+    #   5. Restart system: sudo systemctl restart seceoknight-daily.timer seceoknight-weekly.timer
+    api_key: null
+
+    rate_limit: 1.5              # Free tier: 1.5, Paid tier: 10 or higher
+    priority: 2                   # Checked second (after priority 1)
+
+
+# DATABASE Configuration
+# ======================
+# Stores all detected breaches and scan history
 database:
+  # Default location (recommended)
+  # CHANGE IF: You want database on faster SSD or different location
+  # IMPORTANT: Path must be writable by root
   path: "/opt/seceoknight/breach-monitor/state/breaches.db"
 
+
+# LOGGING Configuration
+# =====================
+# Controls what gets logged and where
 logging:
+  # Log levels: INFO (normal), DEBUG (troubleshooting), WARNING, ERROR
+  # Use INFO for production, DEBUG to troubleshoot problems
+  # WARNING: DEBUG creates much larger log files (10x bigger)
   level: "INFO"
+
+  # Log file location
+  # Logs are rotated daily and kept for 30 days
   log_file: "/opt/seceoknight/breach-monitor/logs/breach_collector.log"
