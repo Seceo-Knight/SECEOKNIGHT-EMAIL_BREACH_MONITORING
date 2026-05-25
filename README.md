@@ -20,11 +20,20 @@ Automatically scans your company's emails against breach databases and alerts yo
 ## 🚀 Quick Start
 
 ```bash
+# Clone repository
 git clone git@github.com:Seceo-Knight/SECEOKNIGHT-BREACH_MONITORING.git
 cd SECEOKNIGHT-BREACH_MONITORING
+
+# Make scripts executable
+chmod +x setup.sh scripts/*.sh
+
+# Run installation
 sudo bash setup.sh
+
+# Configure employee emails
 sudo nano /opt/seceoknight/breach-monitor/config/critical_emails.txt
 sudo nano /opt/seceoknight/breach-monitor/config/all_employees.txt
+
 # Done! System runs automatically
 ```
 
