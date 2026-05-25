@@ -10,7 +10,7 @@ Automatically scans your company's emails against breach databases and alerts yo
 
 ✅ **Multi-Source Monitoring** - XposedOrNot (free) + HIBP (free/paid)
 ✅ **Automated Scans** - Daily 2 AM (critical) + Weekly Sunday 3 AM (all employees)
-✅ **Real-Time Alerts** - Appears instantly in Wazuh dashboard
+✅ **Real-Time Alerts** - Appears instantly in SeceoKnight dashboard
 ✅ **Smart Severity** - CVSS-based (0-10), not keyword-dependent
 ✅ **Production-Ready** - Rate limiting, circuit breaker, error handling
 ✅ **Easy Setup** - One-command installation
