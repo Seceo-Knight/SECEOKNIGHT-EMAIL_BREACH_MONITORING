@@ -1,0 +1,20 @@
+breach_sources:
+  xposedornot:
+    enabled: true
+    name: "xposedornot"
+    rate_limit: 0.01667
+    priority: 1
+
+  hibp:
+    enabled: true
+    name: "hibp"
+    api_key: null
+    rate_limit: 1.5
+    priority: 2
+
+database:
+  path: "/opt/seceoknight/breach-monitor/state/breaches.db"
+
+logging:
+  level: "INFO"
+  log_file: "/opt/seceoknight/breach-monitor/logs/breach_collector.log"
