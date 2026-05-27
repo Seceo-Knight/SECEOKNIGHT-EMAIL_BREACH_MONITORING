@@ -4,16 +4,16 @@
     <rule id="100601" level="15">
         <decoded_as>json</decoded_as>
         <field name="is_credential_breach">1</field>
-        <description>SECEOKNIGHT: CRITICAL - Credentials leaked in breach</description>
+        <description>SECEOKNIGHT ALERT: CREDENTIAL EXPOSURE DETECTED - $(email) - Passwords/Authentication credentials compromised in known breach</description>
         <group>breach,critical</group>
         <options>alert_by_email</options>
     </rule>
 
     <!-- Critical -->
-    <rule id="100602" level="12">
+    <rule id="100602" level="13">
         <decoded_as>json</decoded_as>
         <field name="severity_label">CRITICAL</field>
-        <description>SECEOKNIGHT: CRITICAL - Employee in major breach</description>
+        <description>SECEOKNIGHT ALERT: CRITICAL SEVERITY BREACH - $(email) - Multiple sensitive data categories exposed (Financial/Personal/Email)</description>
         <group>breach,high</group>
         <options>alert_by_email</options>
     </rule>
@@ -22,7 +22,7 @@
     <rule id="100603" level="12">
         <decoded_as>json</decoded_as>
         <field name="severity_label">HIGH</field>
-        <description>SECEOKNIGHT: HIGH - Employee in major breach</description>
+        <description>SECEOKNIGHT ALERT: HIGH SEVERITY BREACH - $(email) - Sensitive personal or email data exposed in public breach database</description>
         <group>breach,high</group>
         <options>alert_by_email</options>
     </rule>
@@ -31,7 +31,7 @@
     <rule id="100604" level="10">
         <decoded_as>json</decoded_as>
         <field name="severity_label">MEDIUM</field>
-        <description>SECEOKNIGHT: MEDIUM - Breach detected</description>
+        <description>SECEOKNIGHT ALERT: MEDIUM SEVERITY BREACH - $(email) - Employee email found in moderate-risk breach incident</description>
         <group>breach</group>
     </rule>
 
@@ -39,7 +39,7 @@
     <rule id="100605" level="5">
         <decoded_as>json</decoded_as>
         <field name="severity_label">LOW</field>
-        <description>SECEOKNIGHT: LOW - Email in breach database</description>
+        <description>SECEOKNIGHT ALERT: LOW SEVERITY INCIDENT - $(email) - Email address detected in public data exposure (informational)</description>
         <group>breach</group>
     </rule>
 
