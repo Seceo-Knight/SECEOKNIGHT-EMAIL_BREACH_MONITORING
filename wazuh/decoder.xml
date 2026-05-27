@@ -1,14 +1,4 @@
 <decoder name="seceoknight">
-    <plugin_decoder>yes</plugin_decoder>
-    <type>json</type>
-</decoder>
-
-<decoder name="seceoknight-custom">
-    <parent>seceoknight</parent>
-    <json_key>source</json_key>
-    <json_key>email</json_key>
-    <json_key>severity_label</json_key>
-    <json_key>is_credential_breach</json_key>
-    <json_key>severity_score</json_key>
-    <json_key>affected_records</json_key>
+    <prematch>^{</prematch>
+    <plugin_decoder>JSON_Decoder</plugin_decoder>
 </decoder>
