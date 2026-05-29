@@ -250,15 +250,11 @@ sudo systemctl restart wazuh-agent wazuh-manager
 ---
 
 ## Testing
-Just Copy all and paste in SeceoKnight Server Terminal 
+Add these bellow email to our ```critical_emails.txt``` and run daily runner
 ```
-sudo bash -c 'cat >> /opt/seceoknight/breach-monitor/logs/breach_collector.log << "EOF"
-{"source":"hibp","email":"alice.garcia@company.com","breach_id":"linkedin_2021","severity_score":9.0,"severity_label":"CRITICAL","data_categories":["credentials","passwords"],"affected_records":500,"is_credential_breach":1,"detection_timestamp":"2026-05-27T14:00:00Z"}
-{"source":"xposedornot","email":"robert.martinez@company.com","breach_id":"ashley_madison_2015","severity_score":8.5,"severity_label":"CRITICAL","data_categories":["financial","personal"],"affected_records":1000,"is_credential_breach":0,"detection_timestamp":"2026-05-27T14:01:00Z"}
-{"source":"hibp","email":"emma.taylor@company.com","breach_id":"adobe_2013","severity_score":7.5,"severity_label":"HIGH","data_categories":["personal","email"],"affected_records":300,"is_credential_breach":0,"detection_timestamp":"2026-05-27T14:02:00Z"}
-{"source":"xposedornot","email":"james.anderson@company.com","breach_id":"yahoo_2013","severity_score":6.0,"severity_label":"MEDIUM","data_categories":["personal"],"affected_records":200,"is_credential_breach":0,"detection_timestamp":"2026-05-27T14:03:00Z"}
-{"source":"hibp","email":"sophia.thomas@company.com","breach_id":"LinkedIn_2021","severity_score":4.0,"severity_label":"LOW","data_categories":["email"],"affected_records":100,"is_credential_breach":0,"detection_timestamp":"2026-05-27T14:04:00Z"}
-EOF'
+test@adobe.com
+test@linkedin.com
+test@yahoo.com
 ```
 
 ## ❓ FAQ
