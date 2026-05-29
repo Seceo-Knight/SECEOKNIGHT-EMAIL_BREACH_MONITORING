@@ -155,7 +155,7 @@ class BreachCollector:
             "email": email,
             "breach_count": 0,
             "breach_ids": [],
-            "status": "clean",
+            "breach_status": "clean",
             "severity_label": "CLEAN",
             "is_credential_breach": False,
             "scan_timestamp": datetime.now().isoformat()
