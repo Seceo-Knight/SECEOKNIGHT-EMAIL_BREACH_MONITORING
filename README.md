@@ -180,7 +180,7 @@ SELECT * FROM breaches WHERE detection_time > datetime('now', '-7 days');
 
 ```bash
 sudo cp wazuh/decoder.xml /var/ossec/etc/decoders/seceoknight.xml
-sudo chown root:wazuh /var/ossec/etc/decoders/seceoknight.xml
+sudo chown wazuh:wazuh /var/ossec/etc/decoders/seceoknight.xml
 sudo chmod 640 /var/ossec/etc/decoders/seceoknight.xml
 ```
 
@@ -188,7 +188,7 @@ sudo chmod 640 /var/ossec/etc/decoders/seceoknight.xml
 
 ```bash
 sudo cp wazuh/rules.xml /var/ossec/etc/rules/seceoknight.xml
-sudo chown root:wazuh /var/ossec/etc/rules/seceoknight.xml
+sudo chown wazuh:wazuh /var/ossec/etc/rules/seceoknight.xml
 sudo chmod 640 /var/ossec/etc/rules/seceoknight.xml
 ```
 
