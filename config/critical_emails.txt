@@ -1,7 +1,12 @@
-# SECEOKNIGHT CRITICAL EMPLOYEES
-# Scanned DAILY at 2 AM
-# Add one email per line
-
-# ceo@company.com
-# ciso@company.com
-# admin@company.com
+shisher@gpcregulatory.com
+roshani.W@conformics.com
+mangesh@gpcregulatory.com
+mangesh@essem-compliance.com
+M.K@gpcregulatory.com
+Surbhi.K@in.gpcregulatory.com
+vhan@essem-compliance.com
+jmnair@gpcregulatory.com
+vdiwan@gpcregulatory.com
+test@adobe.com
+test@linkedin.com
+test@yahoo.com
