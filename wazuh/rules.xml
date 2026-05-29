@@ -1,46 +1,61 @@
 <group name="seceoknight">
-
-    <!-- Credential breach -->
-    <rule id="100601" level="15">
+    <!-- Parent Rule: Email with Breaches Found -->
+    <rule id="100600" level="11">
         <decoded_as>json</decoded_as>
-        <field name="is_credential_breach">1</field>
-        <description>SECEOKNIGHT ALERT: CREDENTIAL EXPOSURE DETECTED - $(email) - Passwords/Authentication credentials compromised in known breach</description>
-        <group>breach,critical</group>
+        <field name="breach_count">1</field>
+        <description>SECEOKNIGHT: $(email) found in $(breach_count) breaches</description>
+        <group>seceoknight,breach</group>
         <options>alert_by_email</options>
     </rule>
 
-    <!-- Critical -->
+    <!-- Credential breach (Highest Priority) -->
+    <rule id="100601" level="15">
+        <decoded_as>json</decoded_as>
+        <field name="is_credential_breach">true</field>
+        <description>SECEOKNIGHT ALERT: CREDENTIAL EXPOSURE - $(email) - Found in $(breach_count) breaches with PASSWORDS EXPOSED</description>
+        <group>seceoknight,breach,critical</group>
+        <options>alert_by_email</options>
+    </rule>
+
+    <!-- Critical Severity -->
     <rule id="100602" level="13">
         <decoded_as>json</decoded_as>
         <field name="severity_label">CRITICAL</field>
-        <description>SECEOKNIGHT ALERT: CRITICAL SEVERITY BREACH - $(email) - Multiple sensitive data categories exposed (Financial/Personal/Email)</description>
-        <group>breach,high</group>
+        <description>SECEOKNIGHT ALERT: CRITICAL BREACH - $(email) - Found in $(breach_count) breaches with sensitive data exposed</description>
+        <group>seceoknight,breach,high</group>
         <options>alert_by_email</options>
     </rule>
 
-    <!-- High -->
+    <!-- High Severity -->
     <rule id="100603" level="12">
         <decoded_as>json</decoded_as>
         <field name="severity_label">HIGH</field>
-        <description>SECEOKNIGHT ALERT: HIGH SEVERITY BREACH - $(email) - Sensitive personal or email data exposed in public breach database</description>
-        <group>breach,high</group>
+        <description>SECEOKNIGHT ALERT: HIGH SEVERITY BREACH - $(email) - Found in $(breach_count) breaches</description>
+        <group>seceoknight,breach,high</group>
         <options>alert_by_email</options>
     </rule>
 
-    <!-- Medium -->
+    <!-- Medium Severity -->
     <rule id="100604" level="10">
         <decoded_as>json</decoded_as>
         <field name="severity_label">MEDIUM</field>
-        <description>SECEOKNIGHT ALERT: MEDIUM SEVERITY BREACH - $(email) - Employee email found in moderate-risk breach incident</description>
-        <group>breach</group>
+        <description>SECEOKNIGHT ALERT: MEDIUM SEVERITY BREACH - $(email) - Found in $(breach_count) breaches</description>
+        <group>seceoknight,breach</group>
     </rule>
 
-    <!-- Low -->
+    <!-- Low Severity -->
     <rule id="100605" level="5">
         <decoded_as>json</decoded_as>
         <field name="severity_label">LOW</field>
-        <description>SECEOKNIGHT ALERT: LOW SEVERITY INCIDENT - $(email) - Email address detected in public data exposure (informational)</description>
-        <group>breach</group>
+        <description>SECEOKNIGHT ALERT: LOW SEVERITY - $(email) - Found in $(breach_count) breaches</description>
+        <group>seceoknight,breach</group>
     </rule>
 
+    <!-- Clean Email (No Breaches) -->
+    <rule id="100606" level="3">
+        <decoded_as>json</decoded_as>
+        <field name="breach_status">clean</field>
+        <description>SECEOKNIGHT: $(email) - No breaches detected (CLEAN)</description>
+        <group>seceoknight,breach,clean</group>
+    </rule>
 </group>
