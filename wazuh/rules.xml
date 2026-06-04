@@ -40,7 +40,7 @@
         <decoded_as>json</decoded_as>
         <field name="severity_label">MEDIUM</field>
         <description>SECEOKNIGHT ALERT: MEDIUM SEVERITY BREACH - $(email) - Found in $(breach_count) breaches</description>
-        <group>seceoknight,breach</group>
+        <group>seceoknight,breach,medium</group>
     </rule>
 
     <!-- Low Severity -->
@@ -48,7 +48,7 @@
         <decoded_as>json</decoded_as>
         <field name="severity_label">LOW</field>
         <description>SECEOKNIGHT ALERT: LOW SEVERITY - $(email) - Found in $(breach_count) breaches</description>
-        <group>seceoknight,breach</group>
+        <group>seceoknight,breach,low</group>
     </rule>
 
     <!-- Clean Email (No Breaches) -->
