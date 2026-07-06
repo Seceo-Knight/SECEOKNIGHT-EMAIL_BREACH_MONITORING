@@ -1,12 +1,16 @@
-shisher@gpcregulatory.com
-roshani.W@conformics.com
-mangesh@gpcregulatory.com
-mangesh@essem-compliance.com
-M.K@gpcregulatory.com
-Surbhi.K@in.gpcregulatory.com
-vhan@essem-compliance.com
-jmnair@gpcregulatory.com
-vdiwan@gpcregulatory.com
+# SECEOKNIGHT critical employee list - scanned DAILY at 2 AM
+# One email per line. Lines starting with # are ignored.
+# Typically your highest-value/highest-risk accounts (leadership, admins,
+# anyone with elevated access) - these get checked every day instead of
+# waiting for the weekly full-employee scan.
+
+ceo@yourcompany.com
+ciso@yourcompany.com
+admin@yourcompany.com
+
+# Recommended: keep these three permanently to verify the pipeline is
+# actually working end-to-end (see README > Testing). These are
+# well-known public test/demo addresses, not real employees.
 test@adobe.com
 test@linkedin.com
 test@yahoo.com

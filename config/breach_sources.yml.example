@@ -11,16 +11,39 @@ breach_sources:
     enabled: true
     name: "xposedornot"
     api_key: null
-    rate_limit: 1.0
+    # Documented limit per https://xposedornot.com/api_doc is 2 req/sec
+    # per IP (the adapter clamps to this even if you raise it here).
+    # Set well below that ceiling (0.5 = one request every 2s) - there's
+    # no real-time pressure on a scheduled scan, and extra margin here
+    # reduces how often you approach XposedOrNot's abuse threshold
+    # (xGuardian) in the first place. Confirmed in production that once
+    # that threshold trips, it doesn't matter how slowly you're sending
+    # requests - the penalty clears with elapsed time, not pacing.
+    rate_limit: 0.5
     priority: 1
     timeout: 10
-    max_retries: 0
+    # max_retries=0 disables the retry/backoff logic entirely - a single
+    # 429/timeout would previously fall straight through to a false
+    # "clean" result. Keep this >=2 so transient rate limits/errors get
+    # retried instead of silently reported as unbreached.
+    max_retries: 3
+    # If XposedOrNot returns its structured "violation history" abuse
+    # response (not a routine 429), the adapter stops retrying immediately
+    # and pauses ALL further xposedornot requests for this many seconds -
+    # confirmed in production that retrying into an active block just adds
+    # more violations and prolongs it. 1800s = 30 minutes.
+    hard_block_cooldown_seconds: 1800
 
   hibp:
     enabled: false
     name: "hibp"
     api_key: null
+    # HIBP's rate limit is tier-dependent and has changed over time -
+    # check https://haveibeenpwned.com/API/v3 for the current figure for
+    # your key before enabling, and set this accordingly (too high a
+    # value here will just produce more 429s, which now retry correctly
+    # but still cost time).
     rate_limit: 10.0
     priority: 2
     timeout: 10
-    max_retries: 2
+    max_retries: 3
