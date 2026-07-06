@@ -20,9 +20,28 @@ mkdir -p $SECEOKNIGHT_DIR/{config,lib,scripts,logs,state/backup}
 chown -R root:root $SECEOKNIGHT_DIR
 chmod 755 $SECEOKNIGHT_DIR
 
-# Install Python dependencies
+# Install OS package for the sqlite3 CLI (health_check.sh and manual
+# queries shell out to the `sqlite3` binary - this is separate from
+# Python's built-in sqlite3 module, which the collector itself uses and
+# which is always present). Without this, health_check.sh silently
+# prints "error" for the breach count even though the database is fine.
+echo "Installing sqlite3 CLI..."
+if command -v apt-get >/dev/null 2>&1; then
+    apt-get install -y sqlite3 >/dev/null
+elif command -v dnf >/dev/null 2>&1; then
+    dnf install -y sqlite >/dev/null
+elif command -v yum >/dev/null 2>&1; then
+    yum install -y sqlite >/dev/null
+else
+    echo "  ⚠️  Unknown package manager - install a sqlite3 CLI package manually"
+fi
+
+# Install Python dependencies (pinned - see requirements.txt)
 echo "Installing Python dependencies..."
-pip3 install --quiet xposedornot requests pyyaml python-dateutil
+pip3 install --quiet -r requirements.txt
+# NOTE: the "xposedornot" PyPI package was previously installed here but
+# is unused - lib/xposedornot_adapter.py talks to the API directly via
+# `requests`. Removed to reduce unnecessary supply-chain surface.
 
 # Copy library files
 echo "Deploying Python libraries..."

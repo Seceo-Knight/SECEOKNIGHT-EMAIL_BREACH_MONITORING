@@ -1,0 +1,19 @@
+# SECEOKNIGHT pinned dependencies.
+# Version ranges (not exact pins) so security patches within a minor
+# line are still picked up automatically; upper bounds prevent an
+# unreviewed major upgrade from silently changing behavior.
+#
+# For full reproducibility (recommended for a production security tool),
+# generate a hash-locked file with pip-tools:
+#   pip install pip-tools
+#   pip-compile --generate-hashes requirements.txt -o requirements.lock.txt
+#   pip install --require-hashes -r requirements.lock.txt
+#
+# NOTE: the "xposedornot" PyPI package is intentionally NOT listed here -
+# lib/xposedornot_adapter.py calls the API directly via `requests` and
+# never imports that package. Installing it was pure unused attack
+# surface.
+
+requests>=2.31,<3.0
+PyYAML>=6.0,<7.0
+python-dateutil>=2.8,<3.0
