@@ -44,7 +44,7 @@
     </rule>
 
     <!-- Low Severity -->
-    <rule id="100605" level="5">
+    <rule id="100605" level="10">
         <decoded_as>json</decoded_as>
         <field name="severity_label">LOW</field>
         <description>SECEOKNIGHT ALERT: LOW SEVERITY - $(email) - Found in $(breach_count) breaches</description>
@@ -52,10 +52,33 @@
     </rule>
 
     <!-- Clean Email (No Breaches) -->
-    <rule id="100606" level="3">
+    <rule id="100606" level="5">
         <decoded_as>json</decoded_as>
         <field name="breach_status">clean</field>
         <description>SECEOKNIGHT: $(email) - No breaches detected (CLEAN)</description>
         <group>seceoknight,breach,clean</group>
+    </rule>
+
+    <!-- Plaintext password exposure (worse than a generic credential breach:
+         the password was stored/leaked with no hashing at all, so no
+         cracking is required to use it directly) -->
+    <rule id="100607" level="15">
+        <decoded_as>json</decoded_as>
+        <field name="has_plaintext_password">true</field>
+        <description>SECEOKNIGHT ALERT: PLAINTEXT PASSWORD EXPOSURE - $(email) - password was stored/leaked with NO HASHING - assume compromised, force reset immediately</description>
+        <group>seceoknight,breach,critical,plaintext_password</group>
+        <options>alert_by_email</options>
+    </rule>
+
+    <!-- Scan could not be completed (rate limited / API error / circuit
+         breaker open after retries). This is deliberately a DISTINCT
+         status from CLEAN - it means "we don't know", not "verified
+         safe". Treat repeated occurrences for the same email as an
+         operational issue requiring a manual re-check. -->
+    <rule id="100608" level="3">
+        <decoded_as>json</decoded_as>
+        <field name="scan_status">unknown</field>
+        <description>SECEOKNIGHT: $(email) - scan INCOMPLETE (source unavailable/rate-limited) - breach status NOT verified this cycle, recheck required</description>
+        <group>seceoknight,breach,scan_incomplete</group>
     </rule>
 </group>
